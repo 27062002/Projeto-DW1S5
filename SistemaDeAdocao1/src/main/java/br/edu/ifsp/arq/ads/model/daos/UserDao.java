@@ -66,6 +66,22 @@ public class UserDao {
 		}
 	}
 	
+	public Boolean checkUserByEmail(String email) {
+		String sql = "select id,email,nome from user where email=?";
+		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setString(1, email);
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		} catch (SQLException sqlException) {
+			throw new RuntimeException("Erro durante a consulta", sqlException);
+		}
+	}
+	
 	public Boolean saveComunUser(User user){
 		Optional<User> optional = getUserByEmail(user.getEmail());
 		if(optional.isPresent()) {

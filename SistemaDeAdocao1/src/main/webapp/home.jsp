@@ -36,6 +36,12 @@
 	        <li class="nav-item">
 	          <a class="nav-link" href="statistics.jsp">Estatísticas</a>
 	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="adocao-register.jsp">Adoção</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="ControllerServlet?action=listAdocoes">Listagem adoções</a>
+	        </li>
 	        <li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 	            ${sessionScope.user.nome}
@@ -78,7 +84,7 @@
 				<c:when test="${fn:length(animals) > 0}">
 					<table class="table table-responsive table-striped table-hover" >
 						<tr>
-							<th>#</th>
+							<th>ID</th>
 							<th>Nome</th>
 							<th>Espécie</th>
 							<th>Idade</th>
@@ -86,7 +92,7 @@
 						</tr>
 						<c:forEach var="animal" items="${animals}" varStatus="index">
 							<tr>
-								<td>${index.count}</td>
+								<td>${animal.id}</td>
 								<td>${animal.nome}</td>
 								<td>${animal.especie}</td>
 								<td>${animal.idade}</td>

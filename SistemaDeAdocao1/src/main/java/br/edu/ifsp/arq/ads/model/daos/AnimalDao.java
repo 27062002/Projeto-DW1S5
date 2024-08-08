@@ -25,7 +25,7 @@ public class AnimalDao {
 	}
 	
 	public Boolean save(Animal animal) {
-		String sql = "insert into animal (nome, especie, idade, sexo, raca, pelagem, problemas_saude) values(?,?,?,?,?,?,?)";
+		String sql = "insert into animal (nome, especie, idade, sexo, raca, pelagem, problemas_saude, adotado) values(?,?,?,?,?,?,?,0)";
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, animal.getNome());
 			ps.setString(2, animal.getEspecie().toString());
@@ -42,7 +42,7 @@ public class AnimalDao {
 	}
 	
 	public List<Animal> getAnimal() {
-		String sql = "select * from animal";
+		String sql = "select * from animal where adotado = 0";
 		List<Animal> animals = new ArrayList();
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			try (ResultSet rs = ps.executeQuery()) {
@@ -115,6 +115,16 @@ public class AnimalDao {
 		}
 	}
 	
+	public void updateList(int animal) {
+		String sql = "update animal set adotado=1 where id=?";
+		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setInt(1, animal);
+			ps.executeUpdate();
+		} catch (SQLException sqlException) {
+			throw new RuntimeException("Erro ao atualizar dados", sqlException);
+		}
+	}
+	
 	public Boolean delete(Animal activity) {
 		String sql = "delete from animal where id=?";
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -134,11 +144,6 @@ public class AnimalDao {
 			sql.append(" where especie=?");
 			params.add(filter.getEspecie().getType().toString());
 		}
-
-		/*if (filter.getSexo() != null) {
-			sql.append(" and sexo=?");
-			params.add(filter.getSexo().getDesciption().toString());
-		}*/
 		
 		return getAnimalList(sql.toString(), params, filter.getUser());	
 	}

@@ -15,6 +15,12 @@
     <param-name>addUser</param-name>
     <param-value>br.edu.ifsp.arq.ads.servlets.helpers.AddUserHelper</param-value>
   </context-param>
+  
+  <context-param>
+    <param-name>addAdocao</param-name>
+    <param-value>br.edu.ifsp.arq.ads.servlets.helpers.AddAdocaoHelper</param-value>
+  </context-param>
+  
   <context-param>
     <param-name>addEmployee</param-name>
     <param-value>br.edu.ifsp.arq.ads.servlets.helpers.AddEmployeeHelper</param-value>
@@ -35,6 +41,12 @@
     <param-name>listAnimals</param-name>
     <param-value>br.edu.ifsp.arq.ads.servlets.helpers.ListAnimalsHelper</param-value>
   </context-param>
+  
+  <context-param>
+    <param-name>listAdocoes</param-name>
+    <param-value>br.edu.ifsp.arq.ads.servlets.helpers.ListAdocaoHelper</param-value>
+  </context-param>
+  
   <context-param>
     <param-name>searchAnimals</param-name>
     <param-value>br.edu.ifsp.arq.ads.servlets.helpers.SearchAnimalsHelper</param-value>

@@ -16,6 +16,7 @@ public class Animal implements Serializable {
 	private String raca;
 	private String pelagem;
 	private String problemas_saude;
+	private String adotado;
 	
 	public Long getId() {
 		return id;
@@ -64,6 +65,12 @@ public class Animal implements Serializable {
 	}
 	public void setProblemas_saude(String problemas_saude) {
 		this.problemas_saude = problemas_saude;
+	}
+	public String getAdotado() {
+		return adotado;
+	}
+	public void setAdotado(String adotado) {
+		this.adotado = adotado;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
