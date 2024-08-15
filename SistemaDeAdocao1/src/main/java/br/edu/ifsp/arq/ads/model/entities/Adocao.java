@@ -13,7 +13,7 @@ public class Adocao implements Serializable {
 	private LocalDate date;
 	private User user;
 	private int animal;
-	private String email;
+	private int user1;
 	
 	public Long getId() {
 		return id;
@@ -46,12 +46,12 @@ public class Adocao implements Serializable {
 		this.animal = animal;
 	}
 	
-	public String getEmail() {
-		return email;
+	public int getUser1() {
+		return user1;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUser1(int user1) {
+		this.user1 = user1;
 	}
 	
 	public static long getSerialversionuid() {

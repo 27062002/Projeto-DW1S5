@@ -5,10 +5,16 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.sql.DataSource;
 
+import br.edu.ifsp.arq.ads.model.entities.Animal;
+import br.edu.ifsp.arq.ads.model.entities.Especie;
+import br.edu.ifsp.arq.ads.model.entities.Sexo;
 import br.edu.ifsp.arq.ads.model.entities.User;
 import br.edu.ifsp.arq.ads.utils.PasswordEncode;
 
@@ -152,5 +158,27 @@ public class UserDao {
 			throw new RuntimeException("Erro durante a consulta", e);
 		}
 		return true;
+	}
+	
+	public List<User> getUser() {
+		String sql = "select * from user";
+		List<User> users = new ArrayList();
+		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+			try (ResultSet rs = ps.executeQuery()) {
+				while (rs.next()) {
+					User user = new User();
+					user.setId(rs.getLong(1));
+					user.setNome(rs.getString(2));
+					user.setCpf(rs.getString(3));
+					user.setRg(rs.getString(4));
+					user.setTelefone(rs.getString(5));
+					user.setData_de_nascimento(LocalDate.parse(rs.getDate(6).toString()));
+					users.add(user);
+				}
+			}
+			return users;
+		} catch (SQLException sqlException) {
+			throw new RuntimeException("Erro durante a consulta", sqlException);
+		}
 	}
 }

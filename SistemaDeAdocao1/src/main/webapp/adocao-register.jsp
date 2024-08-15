@@ -62,17 +62,23 @@
 					
 					<div class="mb-2">
 						<label for="animal">Animal*</label> 
-						<input type="number"
-							name="animal" id="animal" class="form-control" step="1" 
-							required="required" value="${adocao.animal}">
+						<select name="animal" id="animal" class="form-control">
+							<option value="" selected>Selecione</option>
+							<c:forEach  var="animal" items="${animals}" varStatus="index">
+								<option value="${animal.id}">${animal.nome}</option>
+							</c:forEach>
+						</select>
 					</div>
 					
 					<div class="mb-2">
-					<label for="email">E-mail*</label>
-  					<input type="email" class="form-control" name="email" id="email"
-  					required="required">
-  					<span id="6"></span>
-				</div>
+						<label for="usuario">Usuario*</label> 
+						<select name="usuario" id="usuario" class="form-control">
+							<option value="" selected>Selecione</option>
+							<c:forEach  var="usuario" items="${usuarios}" varStatus="index">
+								<option value="${usuario.id}">${usuario.nome}</option>
+							</c:forEach>
+						</select>
+					</div>
 
 					<div class="col-12 mb-2">
 						<button type="submit" class="btn btn-primary" name="action" value="addAdocao">Salvar</button>

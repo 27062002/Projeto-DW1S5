@@ -48,6 +48,17 @@
   </context-param>
   
   <context-param>
+    <param-name>listAnimalsForAdocoes</param-name>
+    <param-value>br.edu.ifsp.arq.ads.servlets.helpers.ListAnimalAdocaoHelper</param-value>
+  </context-param>
+  
+  
+  <context-param>
+    <param-name>listUsersForAdocoes</param-name>
+    <param-value>br.edu.ifsp.arq.ads.servlets.helpers.ListUserAdocaoHelper</param-value>
+  </context-param>
+  
+  <context-param>
     <param-name>searchAnimals</param-name>
     <param-value>br.edu.ifsp.arq.ads.servlets.helpers.SearchAnimalsHelper</param-value>
   </context-param>

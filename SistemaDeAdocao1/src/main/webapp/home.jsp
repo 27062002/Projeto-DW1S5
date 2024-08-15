@@ -37,7 +37,7 @@
 	          <a class="nav-link" href="statistics.jsp">Estatísticas</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="adocao-register.jsp">Adoção</a>
+	          <a class="nav-link" href="ControllerServlet?action=listAnimalsForAdocoes">Adoção</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="ControllerServlet?action=listAdocoes">Listagem adoções</a>

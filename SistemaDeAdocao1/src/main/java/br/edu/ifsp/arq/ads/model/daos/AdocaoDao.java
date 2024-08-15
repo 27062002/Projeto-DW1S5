@@ -27,12 +27,12 @@ public class AdocaoDao {
 	}
 	
 	public Boolean save(Adocao adocao) {
-		String sql = "insert into adocao (adocao_date, funcionario_id, animal_id, email) values(?,?,?,?)";
+		String sql = "insert into adocao (adocao_date, funcionario_id, animal_id, usuario_id) values(?,?,?,?)";
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setDate(1, Date.valueOf(adocao.getDate()));
 			ps.setLong(2, adocao.getUser().getId());
-			ps.setInt(3, adocao.getAnimal());
-			ps.setString(4, adocao.getEmail());
+			ps.setLong(3, adocao.getAnimal());
+			ps.setLong(4, adocao.getUser1());
 			ps.executeUpdate();
 			return true;
 		} catch (SQLException sqlException) {
@@ -42,7 +42,7 @@ public class AdocaoDao {
 	
 	
 	public List<Adocao> getAdocao() {
-		String sql = "select * from adocao";
+		String sql = "select * from adocao ";
 		List<Adocao> adocoes = new ArrayList();
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			try (ResultSet rs = ps.executeQuery()) {
@@ -50,8 +50,8 @@ public class AdocaoDao {
 					Adocao adocao = new Adocao();
 					adocao.setId(rs.getLong(1));
 					adocao.setDate(LocalDate.parse(rs.getDate(2).toString()));
-					adocao.setAnimal(rs.getInt(3));
-					adocao.setEmail(rs.getString(4));
+					adocao.setAnimal(rs.getInt(4));
+					adocao.setUser1(rs.getInt(5));
 					adocoes.add(adocao);
 				}
 			}

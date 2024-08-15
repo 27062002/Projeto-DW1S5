@@ -44,14 +44,14 @@
 							<th>ID</th>
 							<th>Data</th>
 							<th>Animal</th>
-							<th>Email</th>
+							<th>Dono</th>
 						</tr>
 						<c:forEach var="adocao" items="${adocoes}" varStatus="index">
 							<tr>
 								<td>${adocao.id}</td>
 								<td>${adocao.date}</td>
 								<td>${adocao.animal}</td>
-								<td>${adocao.email}</td>
+								<td>${adocao.user1}</td>
 							</tr>
 						</c:forEach>
 					</table>
