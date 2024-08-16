@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/adm-register.jsp","/adocao-register.jsp","/animal-register.jsp","/funcionario-register.jsp","/home-adm.jsp","/home-common.jsp","/home-funcionario.jsp","/listaAdocao.jsp"}, filterName = "Permition")
+@WebFilter(urlPatterns = {"/adm-register.jsp", "/adocao-register.jsp", "/animal-register.jsp", "/funcionario-register.jsp", "/home-adm.jsp", "/home-common.jsp", "/home-funcionario.jsp", "/listaAdocao.jsp"}, filterName = "Permition")
 public class ValidationPagesFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
