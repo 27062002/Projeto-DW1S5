@@ -21,7 +21,14 @@ public class ListAnimalsHelper implements Helper {
 		AnimalDao animalDao = new AnimalDao(SearcherDataSource.getInstance().getDataSource());
 		List<Animal> Animals = animalDao.getAnimal();
 		req.setAttribute("animals", Animals);
-		return "/home.jsp";
+		if (user.getTipoUsuario() == 1) {
+			return "/home-common.jsp";
+		} else if (user.getTipoUsuario() == 2) {
+			return "/home-funcionario.jsp";
+		} else if (user.getTipoUsuario() == 3) {
+			return "/home-adm.jsp";
+		} else {
+			return "/login.jsp";
+		}
 	}
-
 }

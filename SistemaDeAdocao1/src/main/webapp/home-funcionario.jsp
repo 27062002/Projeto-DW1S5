@@ -28,12 +28,6 @@
 	          <a class="nav-link" href="animal-register.jsp">Animal</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="funcionario-register.jsp">Funcionário</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="adm-register.jsp">Administrador</a>
-	        </li>
-	        <li class="nav-item">
 	          <a class="nav-link" href="statistics.jsp">Estatísticas</a>
 	        </li>
 	        <li class="nav-item">

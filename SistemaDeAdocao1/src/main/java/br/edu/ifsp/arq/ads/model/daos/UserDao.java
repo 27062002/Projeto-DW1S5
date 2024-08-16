@@ -30,7 +30,7 @@ public class UserDao {
 	public Optional<User> getUserByEmailAndPassword(String email, String password) {
 		String passwordEncripted = PasswordEncode.encode(password);
 
-		String sql = "select id,nome,email from user where email=? and password=?";
+		String sql = "select id,nome,email,tipoUsuario from user where email=? and password=?";
 		
 		Optional<User> optional = Optional.empty();
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -42,6 +42,7 @@ public class UserDao {
 					user.setId(rs.getLong(1));
 					user.setNome(rs.getString(2));
 					user.setEmail(rs.getString(3));
+					user.setTipoUsuarioComum(rs.getInt(4));
 					optional = Optional.of(user);
 				}
 			} 
@@ -53,7 +54,7 @@ public class UserDao {
 	}	
 	
 	public Optional<User> getUserByEmail(String email) {
-		String sql = "select id,email,nome from user where email=?";
+		String sql = "select id,email,nome,tipoUsuario from user where email=?";
 		Optional<User> optional = Optional.empty();
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, email);
@@ -63,6 +64,7 @@ public class UserDao {
 					user.setId(rs.getLong(1));
 					user.setEmail(rs.getString(2));
 					user.setNome(rs.getString(3));
+					user.setTipoUsuarioComum(rs.getInt(4));
 					optional = Optional.of(user);
 				}
 			}

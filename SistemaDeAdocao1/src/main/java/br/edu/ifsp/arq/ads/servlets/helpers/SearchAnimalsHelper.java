@@ -37,7 +37,14 @@ public class SearchAnimalsHelper implements Helper {
 			e.printStackTrace();
 		}
 		req.setAttribute("animals", animals);
-		return "/home.jsp";
+		if (user.getTipoUsuario() == 1) {
+			return "/home-common.jsp";
+		} else if (user.getTipoUsuario() == 2) {
+			return "/home-funcionario.jsp";
+		} else if (user.getTipoUsuario() == 3) {
+			return "/home-adm.jsp";
+		} else {
+			return "/login.jsp";
+		}
 	}
-
 }

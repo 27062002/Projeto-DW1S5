@@ -12,15 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/homeServlet","/animalRegister","/animalSearch","/home.jsp","/animal-register.jsp"}, filterName = "Authorization")
-public class ValidationFilter implements Filter {
+@WebFilter(urlPatterns = {"/ControllerServlet"}, filterName = "Authorization")
+public class ValidationServletFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
+		String action = httpRequest.getParameter("action");
 		HttpSession session = httpRequest.getSession(false);
-		if(session == null || session.getAttribute("user") == null) {
+		if(session == null || session.getAttribute("user") == null && !action.equals("login") && !action.equals("addUser")) {
 			HttpServletResponse httpResponse = (HttpServletResponse)response;
 			httpResponse.sendRedirect(httpRequest.getContextPath()+"/login.jsp");
 		}
@@ -28,5 +29,4 @@ public class ValidationFilter implements Filter {
 			chain.doFilter(request, response);
 		}	
 	}
-
-}
+} 
