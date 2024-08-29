@@ -49,7 +49,7 @@
 				
 				<div class="mb-2">
 					<label for="telefone">Telefone*</label>
-  					<input type="text" class="form-control" name="telefone" id="telefone" placeholder="(00)00000-0000" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}"
+  					<input type="text" class="form-control" name="telefone" id="telefone" placeholder="(00)00000-0000" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}" 
   					required="required">
   					<span id="3"></span>
 				</div>
