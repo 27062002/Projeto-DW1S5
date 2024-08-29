@@ -81,7 +81,7 @@
 							<tr>
 								<td>${animal.id}</td>
 								<td>
-	                			<img src="${animal.foto}" alt="Foto">
+	                			<img src="uploads/${animal.foto}" alt="Foto">
 	                			</td>
 								<td>${animal.nome}</td>
 								<td>${animal.especie}</td>

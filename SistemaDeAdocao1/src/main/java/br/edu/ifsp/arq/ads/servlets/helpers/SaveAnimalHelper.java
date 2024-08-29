@@ -61,7 +61,7 @@ public class SaveAnimalHelper implements Helper {
 		// gets absolute path of the web application
         String applicationPath = req.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
-        String uploadFilePath = applicationPath/*". /webapp/img" */+ File.separator + UPLOAD_DIR;
+        String uploadFilePath = /*applicationPath*/"/home/aluno/eclipse-workspace/Projeto-DW1S5/SistemaDeAdocao1/src/main/webapp" + File.separator + UPLOAD_DIR;
          
         // creates the save directory if it does not exists
         File fileSaveDir = new File(uploadFilePath);
@@ -69,7 +69,7 @@ public class SaveAnimalHelper implements Helper {
             fileSaveDir.mkdirs();
         }
         System.out.println("Upload File Directory="+fileSaveDir.getAbsolutePath());
-        
+        System.out.println("aaaaaaaaaa="+applicationPath);
         String fileName = null;
         //Get all the parts from request and write it to the file on server
         for (Part part : req.getParts()) {
@@ -78,7 +78,8 @@ public class SaveAnimalHelper implements Helper {
             System.out.println(fileName);
             if(!fileName.isEmpty()) {
             	part.write(uploadFilePath + File.separator + fileName);
-            	return uploadFilePath + File.separator + fileName;
+            	return fileName;
+            	//return uploadFilePath + File.separator + fileName;
             }
             
         }
