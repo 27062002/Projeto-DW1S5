@@ -25,15 +25,16 @@ public class AnimalDao {
 	}
 	
 	public Boolean save(Animal animal) {
-		String sql = "insert into animal (nome, especie, idade, sexo, raca, pelagem, problemas_saude, adotado) values(?,?,?,?,?,?,?,0)";
+		String sql = "insert into animal (nome, foto, especie, idade, sexo, raca, pelagem, problemas_saude, adotado) values(?,?,?,?,?,?,?,?,0)";
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, animal.getNome());
-			ps.setString(2, animal.getEspecie().toString());
-			ps.setInt(3, animal.getIdade());
-			ps.setString(4, animal.getSexo().toString());
-			ps.setString(5, animal.getRaca());
-			ps.setString(6, animal.getPelagem());
-			ps.setString(7, animal.getProblemas_saude());
+			ps.setString(2, animal.getFoto());
+			ps.setString(3, animal.getEspecie().toString());
+			ps.setInt(4, animal.getIdade());
+			ps.setString(5, animal.getSexo().toString());
+			ps.setString(6, animal.getRaca());
+			ps.setString(7, animal.getPelagem());
+			ps.setString(8, animal.getProblemas_saude());
 			ps.executeUpdate();
 			return true;
 		} catch (SQLException sqlException) {
@@ -50,19 +51,23 @@ public class AnimalDao {
 					Animal animal = new Animal();
 					animal.setId(rs.getLong(1));
 					animal.setNome(rs.getString(2));
-					animal.setEspecie(Especie.valueOf(rs.getString(3)));
-					animal.setIdade(rs.getInt(4));
-					animal.setSexo(Sexo.valueOf(rs.getString(5)));
-					animal.setRaca(rs.getString(6));
-					animal.setPelagem(rs.getNString(7));
-					animal.setProblemas_saude(rs.getString(8));
+					animal.setFoto(rs.getString(3));
+					animal.setEspecie(Especie.valueOf(rs.getString(4)));
+					animal.setIdade(rs.getInt(5));
+					animal.setSexo(Sexo.valueOf(rs.getString(6)));
+					animal.setRaca(rs.getString(7));
+					animal.setPelagem(rs.getNString(8));
+					animal.setProblemas_saude(rs.getString(9));
 					animals.add(animal);
 				}
 			}
+			
 			return animals;
 		} catch (SQLException sqlException) {
 			throw new RuntimeException("Erro durante a consulta", sqlException);
 		}
+		
+		
 	}
 	
 	public Animal getAnimalsById(Long id) {
@@ -75,12 +80,13 @@ public class AnimalDao {
 					animal = new Animal();
 					animal.setId(rs.getLong(1));
 					animal.setNome(rs.getString(2));
-					animal.setEspecie(Especie.valueOf(rs.getString(3)));
-					animal.setIdade(rs.getInt(4));
-					animal.setSexo(Sexo.valueOf(rs.getString(5)));
-					animal.setRaca(rs.getString(6));
-					animal.setPelagem(rs.getString(7));
-					animal.setProblemas_saude(rs.getString(8));
+					animal.setFoto(rs.getString(3));
+					animal.setEspecie(Especie.valueOf(rs.getString(4)));
+					animal.setIdade(rs.getInt(5));
+					animal.setSexo(Sexo.valueOf(rs.getString(6)));
+					animal.setRaca(rs.getString(7));
+					animal.setPelagem(rs.getString(8));
+					animal.setProblemas_saude(rs.getString(9));
 				}
 			}
 			return animal;
@@ -92,6 +98,7 @@ public class AnimalDao {
 	public Boolean update(Animal animal) {
 		String sql = "update animal set " +
 				"nome=?," +
+				"foto=?," +
                 "especie=?," +
                 "idade=?," +
                 "sexo=?," +
@@ -101,13 +108,14 @@ public class AnimalDao {
                 " where id=?";
 		try (Connection con = dataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, animal.getNome());
-			ps.setString(2, animal.getEspecie().toString());
-			ps.setInt(3, animal.getIdade());
-			ps.setString(4, animal.getSexo().toString());
-			ps.setString(5, animal.getRaca());
-			ps.setString(6, animal.getPelagem());
-			ps.setString(7, animal.getProblemas_saude());
-			ps.setLong(8, animal.getId());
+			ps.setString(2, animal.getFoto());
+			ps.setString(3, animal.getEspecie().toString());
+			ps.setInt(4, animal.getIdade());
+			ps.setString(5, animal.getSexo().toString());
+			ps.setString(6, animal.getRaca());
+			ps.setString(7, animal.getPelagem());
+			ps.setString(8, animal.getProblemas_saude());
+			ps.setLong(9, animal.getId());
 			ps.executeUpdate();
 			return true;
 		} catch (SQLException sqlException) {
@@ -137,11 +145,11 @@ public class AnimalDao {
 	}
 	
 	public List<Animal> getAnimalsByFilter(AnimalFilter filter) throws SQLException {
-		StringBuilder sql = new StringBuilder("select * from animal");
+		StringBuilder sql = new StringBuilder("select * from animal where adotado = 0");
 		List<Object> params = new ArrayList<>();
 		
 		if (filter.getEspecie() != null) {
-			sql.append(" where especie=?");
+			sql.append(" and especie=?");
 			params.add(filter.getEspecie().getType().toString());
 		}
 		
@@ -159,12 +167,13 @@ public class AnimalDao {
 					Animal animal = new Animal();
 					animal.setId(rs.getLong(1));
 					animal.setNome(rs.getString(2));
-					animal.setEspecie(Especie.valueOf(rs.getString(3)));
-					animal.setIdade(rs.getInt(4));
-					animal.setSexo(Sexo.valueOf(rs.getString(5)));
-					animal.setRaca(rs.getString(6));
-					animal.setPelagem(rs.getString(7));
-					animal.setProblemas_saude(rs.getString(8));
+					animal.setFoto(rs.getString(3));
+					animal.setEspecie(Especie.valueOf(rs.getString(4)));
+					animal.setIdade(rs.getInt(5));
+					animal.setSexo(Sexo.valueOf(rs.getString(6)));
+					animal.setRaca(rs.getString(7));
+					animal.setPelagem(rs.getString(8));
+					animal.setProblemas_saude(rs.getString(9));
 					animals.add(animal);
 				}
 			}

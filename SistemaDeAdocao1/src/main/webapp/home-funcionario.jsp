@@ -79,6 +79,7 @@
 					<table class="table table-responsive table-striped table-hover" >
 						<tr>
 							<th>ID</th>
+							<th>Foto</th>
 							<th>Nome</th>
 							<th>Espécie</th>
 							<th>Idade</th>
@@ -87,6 +88,9 @@
 						<c:forEach var="animal" items="${animals}" varStatus="index">
 							<tr>
 								<td>${animal.id}</td>
+								<td>
+	                			<img src="${animal.foto}" alt="Foto">
+	                			</td>
 								<td>${animal.nome}</td>
 								<td>${animal.especie}</td>
 								<td>${animal.idade}</td>

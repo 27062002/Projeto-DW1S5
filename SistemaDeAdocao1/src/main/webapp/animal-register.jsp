@@ -47,8 +47,9 @@
 							aria-label="Close"></button>
 					</div>
 				</c:if>
-			<form action="ControllerServlet" method="post" id="form2">
+			<form action="ControllerServlet" method="post" id="form2" enctype="multipart/form-data">
 
+		
 					<c:choose>
 						<c:when test="${animal == null}">
 							<h1 class="text-center">Novo Animal</h1>
@@ -57,6 +58,10 @@
 							<h1 class="text-center">Edição de Animal</h1>
 						</c:when>
 					</c:choose>
+					<div class="mb-2">
+						<label for="fileName">Foto do animal*</label>
+						<input type = "file" name ="fileName" id ="fileName" accept = "image/*" />
+					</div>
 					<c:choose>
 						<c:when test="${animal == null}">
 							<input type="hidden" name="id" value="0">
@@ -65,11 +70,13 @@
 							<input type="hidden" name="id" value="${animal.id}">
 						</c:when>
 					</c:choose>
+					
 					<div class="mb-2">
 						<label for="nome">Nome*</label>
   						<input type="text" class="form-control" name="nome" id="nome" maxlength="50"
   						required="required" value="${animal.nome}">
 					</div>
+					
 					<div class="mb-2">
 						<label for="especie">Espécie*</label> 
 						<select class="form-select"

@@ -54,28 +54,28 @@
     	 		
     	 		<div class="mb-2">
 					<label for="nome">Nome completo*</label>
-  					<input type="text" class="form-control" name="nome" id="nome" minlength="3" maxlength="50"
+  					<input type="text" class="form-control" name="nome" id="nome" maxlength="50" pattern="[a-zA-Z]{2,}(\s[a-zA-Z]{2,})+" placeholder="Nome completo"
   					required="required">
   					<span id="0"></span>
 				</div>
 				
 				<div class="mb-2">
 					<label for="cpf">CPF*</label>
-  					<input type="text" class="form-control" name="cpf" id="cpf"
+  					<input type="text" class="form-control" name="cpf" id="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" placeholder="000.000.000-00"
   					required="required">
   					<span id="1"></span>
 				</div>
 				
 				<div class="mb-2">
 					<label for="rg">RG*</label>
-  					<input type="text" class="form-control" name="rg" id="rg"
+  					<input type="text" class="form-control" name="rg" id="rg" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}-[0-9]{1}" placeholder="00.000.000-0"
   					required="required">
   					<span id="2"></span>
 				</div>
 				
 				<div class="mb-2">
 					<label for="telefone">Telefone*</label>
-  					<input type="text" class="form-control" name="telefone" id="telefone"
+  					<input type="text" class="form-control" name="telefone" id="telefone" placeholder="(00)00000-0000" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}"
   					required="required">
   					<span id="3"></span>
 				</div>

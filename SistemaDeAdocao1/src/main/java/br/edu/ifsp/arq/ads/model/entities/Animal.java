@@ -10,6 +10,7 @@ public class Animal implements Serializable {
 
 	private Long id;
 	private String nome;
+	private String foto;
 	private Especie especie;
 	private int idade;
 	private Sexo sexo;
@@ -30,6 +31,14 @@ public class Animal implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	
 	public Especie getEspecie() {
 		return especie;
 	}
