@@ -1,2 +1,73 @@
 @charset "UTF-8";
 
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+}
+.navbar {
+    background-color: #003366 !important;
+}
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+}
+.nav-link:hover {
+    color: #66ccff !important;
+}
+.container {
+    margin-top: 50px;
+    max-width: 900px;
+}
+.row {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.form-control {
+    border-radius: 8px;
+    padding-left: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 15px;
+}
+.form-group .fa {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+.btn-primary {
+    background-color: #003366;
+    border-color: #003366;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #66ccff;
+    border-color: #66ccff;
+}
+h1 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.alert-success, .alert-danger {
+    margin-bottom: 20px;
+}
+.image-side {
+    background-color: #003366;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+.image-side img {
+    max-width: 100%;
+    border-radius: 10px;
+}

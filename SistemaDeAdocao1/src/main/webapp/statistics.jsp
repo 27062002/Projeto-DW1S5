@@ -8,49 +8,7 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-        }
-        .navbar {
-            background-color: #003366 !important;
-        }
-        .navbar-brand, .nav-link {
-            color: #ffffff !important;
-        }
-        .nav-link:hover {
-            color: #ff6600 !important;
-        }
-        .container {
-            margin-top: 30px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-        }
-        h4 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #004080;
-            text-align: center;
-        }
-        .card {
-            border-radius: 15px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #004080;
-            margin-bottom: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/statistics.css">
 </head>
 <body>
 

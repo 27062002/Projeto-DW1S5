@@ -10,71 +10,7 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f6f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .navbar {
-            background-color: #003366 !important;
-        }
-        .navbar-brand, .nav-link {
-            color: #ffffff !important;
-        }
-        .nav-link:hover {
-            color: #ff6600 !important;
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
-        }
-        h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #004080;
-        }
-        .form-control {
-            border-radius: 8px;
-            box-shadow: none;
-            padding-left: 15px;
-        }
-        .btn-primary {
-            background-color: #004080;
-            border-color: #004080;
-            transition: background-color 0.3s ease;
-            font-weight: 600;
-        }
-        .btn-primary:hover {
-            background-color: #008080;
-            border-color: #008080;
-        }
-        .alert {
-            margin-bottom: 20px;
-            border-radius: 8px;
-            padding: 10px 15px;
-        }
-        .alert-success {
-            background-color: #28a745;
-            color: #ffffff;
-        }
-        .alert-danger {
-            background-color: #dc3545;
-            color: #ffffff;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/adocao-register.css">
 </head>
 <body>
 

@@ -13,63 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #e0f7fa, #ffffff);
-            color: #333;
-        }
-        .navbar {
-            background-color: #003366 !important;
-        }
-        .navbar-brand, .nav-link {
-            color: #ffffff !important;
-        }
-        .nav-link:hover {
-            color: #66ccff !important;
-        }
-        .container {
-            margin-top: 50px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .form-control, .form-select {
-            border-radius: 8px;
-            padding-left: 40px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        .form-group {
-            position: relative;
-        }
-        .form-group .fa {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-        }
-        .btn-primary {
-            background-color: #003366;
-            border-color: #003366;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #66ccff;
-            border-color: #66ccff;
-        }
-        h1 {
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .alert-success, .alert-danger {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/animal-register.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">

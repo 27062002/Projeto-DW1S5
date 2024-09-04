@@ -13,57 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #004080, #008080);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            color: #ffffff;
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            color: #333;
-        }
-        h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #004080;
-        }
-        .form-control {
-            border-radius: 8px;
-            padding-left: 15px;
-            box-shadow: none;
-        }
-        .btn-primary {
-            background-color: #004080;
-            border-color: #004080;
-            transition: background-color 0.3s ease;
-            font-weight: 600;
-        }
-        .btn-primary:hover {
-            background-color: #008080;
-            border-color: #008080;
-        }
-        .alert-danger {
-            background-color: #dc3545;
-            color: #ffffff;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/user-register.css">
 </head>
 <body>
     <div class="container">
@@ -79,19 +29,19 @@
             <h1>Cadastre-se</h1>
             <div class="mb-3">
                 <label for="nome">Nome completo*</label>
-                <input type="text" class="form-control" name="nome" id="nome" maxlength="50" pattern="[a-zA-Z]{2,}(\s[a-zA-Z]{2,})+" placeholder="Nome completo"
+                <input type="text" class="form-control" name="nome" id="nome" maxlength="50" pattern="[a-zA-Z]{2,}(\s[a-zA-Z]{2,})+" placeholder="Nome completo">
             </div>
             <div class="mb-3">
                 <label for="cpf">CPF*</label>
-                <input type="text" class="form-control" name="cpf" id="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" placeholder="000.000.000-00"
+                <input type="text" class="form-control" name="cpf" id="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" placeholder="000.000.000-00">
             </div>
             <div class="mb-3">
                 <label for="rg">RG*</label>
-                <input type="text" class="form-control" name="rg" id="rg" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}-[0-9]{1}" placeholder="00.000.000-0"
+                <input type="text" class="form-control" name="rg" id="rg" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}-[0-9]{1}" placeholder="00.000.000-0">
             </div>
             <div class="mb-3">
                 <label for="telefone">Telefone*</label>
-                <input type="text" class="form-control" name="telefone" id="telefone" placeholder="(00)00000-0000" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}"
+                <input type="text" class="form-control" name="telefone" id="telefone" placeholder="(00)00000-0000" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}">
             </div>
             <div class="mb-3">
                 <label for="data_de_nascimento">Data de Nascimento*</label>
