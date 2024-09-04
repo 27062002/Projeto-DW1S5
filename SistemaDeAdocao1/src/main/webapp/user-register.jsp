@@ -4,97 +4,122 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adoção - Cadastro de Usuário</title>
     
-	<title>Adoção - Página de Cadastro de Usuário</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/user-register.css">
-
-  </head>
-  <body>
-  	<div class="container">
-    	<div class="col-lg-6 offset-lg-3 col-sm-12">
-    	<c:if test="${result == 'notRegistered' }">
-    		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  			E-mail já cadastrado tente novamente
-  			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-    	</c:if>
-    	 <form action="ControllerServlet" method="post" id="form1">
-    	 		<h1 class="text-center">Cadastre-se</h1>
-    	 		
-    	 		<div class="mb-2">
-					<label for="nome">Nome completo*</label>
-  					<input type="text" class="form-control" name="nome" id="nome" maxlength="50" pattern="[a-zA-Z]{2,}(\s[a-zA-Z]{2,})+" placeholder="Nome completo"
-  					required="required">
-  					<span id="0"></span>
-				</div>
-				
-				<div class="mb-2">
-					<label for="cpf">CPF*</label>
-  					<input type="text" class="form-control" name="cpf" id="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" placeholder="000.000.000-00"
-  					required="required">
-  					<span id="1"></span>
-				</div>
-				
-				<div class="mb-2">
-					<label for="rg">RG*</label>
-  					<input type="text" class="form-control" name="rg" id="rg" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}-[0-9]{1}" placeholder="00.000.000-0"
-  					required="required">
-  					<span id="2"></span>
-				</div>
-				
-				<div class="mb-2">
-					<label for="telefone">Telefone*</label>
-  					<input type="text" class="form-control" name="telefone" id="telefone" placeholder="(00)00000-0000" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}" 
-  					required="required">
-  					<span id="3"></span>
-				</div>
-				
-				<div class="mb-2">
-  					<label for="data_de_nascimento">Data de Nascimento*</label>
-  					<input type="date" class="form-control" name="data_de_nascimento" id="data_de_nascimento" required="required">
-  					<span id="4"></span>
-				</div>
-				
-				<div class="mb-2">
-					<label for="endereco">Endereço*</label>
-  					<input type="text" class="form-control" name="endereco" id="endereco"
-  					required="required">
-  					<span id="5"></span>
-				</div>
-				
-				<div class="mb-2">
-					<label for="email">E-mail*</label>
-  					<input type="email" class="form-control" name="email" id="email"
-  					required="required">
-  					<span id="6"></span>
-				</div>
-				
-				<div class="mb-2">
-  					<label for="password">Senha*</label>
-  					<input type="password" class="form-control" name="password" id="password" minlength="6" maxlength="12" required="required">
-  					<span id="7"></span>
-				</div>
-				
-				<div class="mb-2">
-  					<label for="confirmPassword">Confirmação de Senha*</label>
-  					<input type="password" class="form-control" name="confirmPassword" id="confirmPassword" minlength="6" maxlength="12" required="required">
-  					<span id="8"></span>
-				</div>
-				
-				<div class="col-12 mb-2">
-					<button type="submit" class="btn btn-primary" name="action" value="addUser">Salvar</button>
-				</div>
-    	 </form>
-    	</div>
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #004080, #008080);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            color: #333;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #004080;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding-left: 15px;
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #004080;
+            border-color: #004080;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #008080;
+            border-color: #008080;
+        }
+        .alert-danger {
+            background-color: #dc3545;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-12">
+            <c:if test="${result == 'notRegistered'}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    E-mail já cadastrado, tente novamente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </c:if>
+        </div>
+        <form action="ControllerServlet" method="post" id="form1">
+            <h1>Cadastre-se</h1>
+            <div class="mb-3">
+                <label for="nome">Nome completo*</label>
+                <input type="text" class="form-control" name="nome" id="nome" maxlength="50" pattern="[a-zA-Z]{2,}(\s[a-zA-Z]{2,})+" placeholder="Nome completo"
+            </div>
+            <div class="mb-3">
+                <label for="cpf">CPF*</label>
+                <input type="text" class="form-control" name="cpf" id="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" placeholder="000.000.000-00"
+            </div>
+            <div class="mb-3">
+                <label for="rg">RG*</label>
+                <input type="text" class="form-control" name="rg" id="rg" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}-[0-9]{1}" placeholder="00.000.000-0"
+            </div>
+            <div class="mb-3">
+                <label for="telefone">Telefone*</label>
+                <input type="text" class="form-control" name="telefone" id="telefone" placeholder="(00)00000-0000" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}"
+            </div>
+            <div class="mb-3">
+                <label for="data_de_nascimento">Data de Nascimento*</label>
+                <input type="date" class="form-control" name="data_de_nascimento" id="data_de_nascimento" required>
+            </div>
+            <div class="mb-3">
+                <label for="endereco">Endereço*</label>
+                <input type="text" class="form-control" name="endereco" id="endereco" required>
+            </div>
+            <div class="mb-3">
+                <label for="email">E-mail*</label>
+                <input type="email" class="form-control" name="email" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password">Senha*</label>
+                <input type="password" class="form-control" name="password" id="password" minlength="6" maxlength="12" required>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword">Confirmação de Senha*</label>
+                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" minlength="6" maxlength="12" required>
+            </div>
+            <div class="col-12 mb-2">
+                <button type="submit" class="btn btn-primary w-100" name="action" value="addUser">Salvar</button>
+            </div>
+        </form>
     </div>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/user-register.js"></script>
-  </body>
+</body>
 </html>

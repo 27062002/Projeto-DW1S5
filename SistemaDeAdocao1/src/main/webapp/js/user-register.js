@@ -3,8 +3,7 @@
 window.onload = initPage;
 
 function initPage(){
-
-let form = document.getElementById('form1');
+	let form = document.getElementById('form1');
 
 cpfMascara();
 rgMascara();

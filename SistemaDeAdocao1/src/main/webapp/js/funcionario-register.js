@@ -4,7 +4,7 @@ window.onload = initPage;
 
 function initPage(){
 
-let form = document.getElementById('form1');
+	let form = document.getElementById('form1');
 
 cpfMascara();
 rgMascara();
@@ -93,6 +93,7 @@ numeroFormatado += '-' + numerosArray.slice(7, 11).join("");
 
 telefone.value = numeroFormatado;
 });
+
 }
 
 function processValidity(form){

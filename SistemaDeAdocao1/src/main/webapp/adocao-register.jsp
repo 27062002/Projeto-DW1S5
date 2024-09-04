@@ -3,90 +3,149 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!-- jakarta.tags.core -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%><!-- jakarta.tags.functions -->
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Página de Cadastro de Adoção</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="css/adocao-register.css">
+    <meta charset="UTF-8">
+    <title>Página de Cadastro de Adoção</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .navbar {
+            background-color: #003366 !important;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link:hover {
+            color: #ff6600 !important;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #004080;
+        }
+        .form-control {
+            border-radius: 8px;
+            box-shadow: none;
+            padding-left: 15px;
+        }
+        .btn-primary {
+            background-color: #004080;
+            border-color: #004080;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #008080;
+            border-color: #008080;
+        }
+        .alert {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+        .alert-success {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+        .alert-danger {
+            background-color: #dc3545;
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <div class="container-fluid">
-	    <a class="navbar-brand" href="ControllerServlet?action=listAnimals">Adoção</a>
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	        <li class="nav-item">
-	          <a class="nav-link" href="ControllerServlet?action=listAnimals">Home</a>
-	        </li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	<div class="container ">
-		<div class="center col-lg-6 offset-lg-3 col-sm-12">
-				<c:if test="${result == 'registered'}">
-					<div class="alert alert-success alert-dismissible fade show"
-						role="alert">
-						Adoção cadastrada com sucesso.
-						<button type="button" class="btn-close" data-bs-dismiss="alert"
-							aria-label="Close"></button>
-					</div>
-				</c:if>
-				<c:if test="${result == 'notRegistered'}">
-					<div class="alert alert-danger alert-dismissible fade show"
-						role="alert">
-						Adoção não cadastrada.
-						<button type="button" class="btn-close" data-bs-dismiss="alert"
-							aria-label="Close"></button>
-					</div>
-				</c:if>
-			<form action="ControllerServlet" method="post" id="form2">
 
-					<c:choose>
-						<c:when test="${adocao == null}">
-							<h1 class="text-center">Nova Adoção</h1>
-						</c:when>
-					</c:choose>
-					<div class="mb-2">
-						<label for="date">Data*</label> 
-						<input type="date" name="date" id="date"
-							class="form-control" required="required" value="${adocao.date}">
-					</div>
-					
-					<div class="mb-2">
-						<label for="animal">Animal*</label> 
-						<select name="animal" id="animal" class="form-control">
-							<option value="" selected>Selecione</option>
-							<c:forEach  var="animal" items="${animals}" varStatus="index">
-								<option value="${animal.id}">${animal.nome}</option>
-							</c:forEach>
-						</select>
-					</div>
-					
-					<div class="mb-2">
-						<label for="usuario">Usuario*</label> 
-						<select name="usuario" id="usuario" class="form-control">
-							<option value="" selected>Selecione</option>
-							<c:forEach  var="usuario" items="${usuarios}" varStatus="index">
-								<option value="${usuario.id}">${usuario.nome}</option>
-							</c:forEach>
-						</select>
-					</div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="ControllerServlet?action=listAnimals">Adoção</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="ControllerServlet?action=listAnimals">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-					<div class="col-12 mb-2">
-						<button type="submit" class="btn btn-primary" name="action" value="addAdocao">Salvar</button>
-					</div>
-			</form>
-		</div>
-	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container">
+        <div class="center col-lg-6 offset-lg-3 col-sm-12">
+            <c:if test="${result == 'registered'}">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Adoção cadastrada com sucesso.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </c:if>
+            <c:if test="${result == 'notRegistered'}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Adoção não cadastrada.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </c:if>
+            <form action="ControllerServlet" method="post" id="form2">
+                <c:choose>
+                    <c:when test="${adocao == null}">
+                        <h1 class="text-center">Nova Adoção</h1>
+                    </c:when>
+                </c:choose>
+                <div class="mb-2">
+                    <label for="date">Data*</label>
+                    <input type="date" name="date" id="date" class="form-control" required value="${adocao.date}">
+                </div>
+                
+                <div class="mb-2">
+                    <label for="animal">Animal*</label>
+                    <select name="animal" id="animal" class="form-control" required>
+                        <option value="" selected>Selecione</option>
+                        <c:forEach var="animal" items="${animals}" varStatus="index">
+                            <option value="${animal.id}">${animal.nome}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                
+                <div class="mb-2">
+                    <label for="usuario">Usuário*</label>
+                    <select name="usuario" id="usuario" class="form-control" required>
+                        <option value="" selected>Selecione</option>
+                        <c:forEach var="usuario" items="${usuarios}" varStatus="index">
+                            <option value="${usuario.id}">${usuario.nome}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <button type="submit" class="btn btn-primary w-100" name="action" value="addAdocao">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,169 +1,182 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!-- jakarta.tags.core -->
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%><!-- jakarta.tags.functions -->
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Página de Cadastro de Animal</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="css/animal-register.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro de Animal</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #ffffff);
+            color: #333;
+        }
+        .navbar {
+            background-color: #003366 !important;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link:hover {
+            color: #66ccff !important;
+        }
+        .container {
+            margin-top: 50px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .form-control, .form-select {
+            border-radius: 8px;
+            padding-left: 40px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-group .fa {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        .btn-primary {
+            background-color: #003366;
+            border-color: #003366;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #66ccff;
+            border-color: #66ccff;
+        }
+        h1 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .alert-success, .alert-danger {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <div class="container-fluid">
-	    <a class="navbar-brand" href="ControllerServlet?action=listAnimals">Adoção</a>
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	        <li class="nav-item">
-	          <a class="nav-link" href="ControllerServlet?action=listAnimals">Home</a>
-	        </li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	<div class="container ">
-		<div class="center col-lg-6 offset-lg-3 col-sm-12">
-				<c:if test="${result == 'registered'}">
-					<div class="alert alert-success alert-dismissible fade show"
-						role="alert">
-						Animal cadastrado com sucesso.
-						<button type="button" class="btn-close" data-bs-dismiss="alert"
-							aria-label="Close"></button>
-					</div>
-				</c:if>
-				<c:if test="${result == 'notRegistered'}">
-					<div class="alert alert-danger alert-dismissible fade show"
-						role="alert">
-						Animal não cadastrado.
-						<button type="button" class="btn-close" data-bs-dismiss="alert"
-							aria-label="Close"></button>
-					</div>
-				</c:if>
-			<form action="ControllerServlet" method="post" id="form2" enctype="multipart/form-data">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="ControllerServlet?action=listAnimals">Adoção</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="ControllerServlet?action=listAnimals">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-		
-					<c:choose>
-						<c:when test="${animal == null}">
-							<h1 class="text-center">Novo Animal</h1>
-						</c:when>
-						<c:when test="${animal != null}">
-							<h1 class="text-center">Edição de Animal</h1>
-						</c:when>
-					</c:choose>
-					<div class="mb-2">
-						<label for="fileName">Foto do animal*</label>
-						<input type = "file" name ="fileName" id ="fileName" accept = "image/*" />
-					</div>
-					<c:choose>
-						<c:when test="${animal == null}">
-							<input type="hidden" name="id" value="0">
-						</c:when>
-						<c:when test="${animal != null}">
-							<input type="hidden" name="id" value="${animal.id}">
-						</c:when>
-					</c:choose>
-					
-					<div class="mb-2">
-						<label for="nome">Nome*</label>
-  						<input type="text" class="form-control" name="nome" id="nome" maxlength="50"
-  						required="required" value="${animal.nome}">
-					</div>
-					
-					<div class="mb-2">
-						<label for="especie">Espécie*</label> 
-						<select class="form-select"
-							name="especie" id="especie" required="required">
-							<c:choose>
-								<c:when test="${animal == null}">
-									<option value="" selected>Selecione</option>
-								</c:when>
-							</c:choose>
-							<c:choose>
-								<c:when test="${animal.especie != 'CACHORRO'}">
-									<option value="CACHORRO">Cachorro</option>
-								</c:when>
-								<c:when test="${animal.especie == 'CACHORRO'}">
-									<option value="CACHORRO" selected>Cachorro</option>
-								</c:when>
-							</c:choose>
-							<c:choose>
-								<c:when test="${animal.especie != 'GATO'}">
-									<option value="GATO">Gato</option>
-								</c:when>
-								<c:when test="${animal.especie == 'GATO'}">
-									<option value="GATO" selected>Gato</option>
-								</c:when>
-							</c:choose>
-						</select>
-					</div>
-					
-					<div class="mb-2">
-						<label for="idade">Idade*</label> 
-						<input type="number"
-							name="idade" id="idade" class="form-control" step="1" 
-							required="required" value="${animal.idade}">
-					</div>
-					
-					<div class="mb-2">
-						<label for="sexo">Sexo*</label> 
-						<select class="form-select"
-							name="sexo" id="sexo" required="required">
-							<c:choose>
-								<c:when test="${animal == null}">
-									<option value="" selected>Selecione</option>
-								</c:when>
-							</c:choose>
-							<c:choose>
-								<c:when test="${animal.sexo != 'MACHO'}">
-									<option value="MACHO">Macho</option>
-								</c:when>
-								<c:when test="${animal.sexo == 'MACHO'}">
-									<option value="MACHO" selected>Macho</option>
-								</c:when>
-							</c:choose>
-							<c:choose>
-								<c:when test="${animal.sexo != 'FEMEA'}">
-									<option value="FEMEA">Fêmea</option>
-								</c:when>
-								<c:when test="${animal.sexo == 'FEMEA'}">
-									<option value="FEMEA" selected>Fêmea</option>
-								</c:when>
-							</c:choose>
-					</div>
-					
-					<div class="mb-2">
-						<label for="pelagem">Pelagem*</label>
-  						<input type="text" class="form-control" name="pelagem" id="pelagem" minlength="3" maxlength="50"
-  						required="required" value="${animal.pelagem}">
-					</div>
-					
-					<div class="mb-2">
-						<label for="raca">Raça*</label>
-  						<input type="text" class="form-control" name="raca" id="raca" minlength="3" maxlength="50"
-  						required="required" value="${animal.raca}">
-					</div>
-					
-					<div class="mb-2">
-						<label for = "problemas_saude">Problemas de saúde:</label>
-						<textarea name = "problemas_saude" id = "problemas_saude" value="${animal.problemas_saude}">
-						</textarea>
-					</div>
+    <div class="container">
+        <div class="center col-lg-8 offset-lg-2 col-sm-12">
+            <c:if test="${result == 'registered'}">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Animal cadastrado com sucesso.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </c:if>
+            <c:if test="${result == 'notRegistered'}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Animal não cadastrado.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </c:if>
+            <form action="ControllerServlet" method="post" id="form2" enctype="multipart/form-data">
+                <c:choose>
+                    <c:when test="${animal == null}">
+                        <h1>Novo Animal</h1>
+                        <input type="hidden" name="id" value="0">
+                    </c:when>
+                    <c:when test="${animal != null}">
+                        <h1>Edição de Animal</h1>
+                        <input type="hidden" name="id" value="${animal.id}">
+                    </c:when>
+                </c:choose>
 
-					<div class="col-12 mb-2">
-						<button type="submit" class="btn btn-primary" name="action" value="saveAnimal">Salvar</button>
-					</div>
-			</form>
+		<div class="mb-2">
+			<label for="fileName">Foto do animal*</label>
+			<input type = "file" name ="fileName" id ="fileName" accept = "image/*" />
 		</div>
-	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+                <div class="form-group mb-3">
+                    <i class="fa fa-paw"></i>
+                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome*" maxlength="50" required value="${animal.nome}">
+                </div>
+
+                <div class="form-group mb-3">
+                    <i class="fa fa-dog"></i>
+                    <select class="form-select" name="especie" id="especie" required>
+                        <c:choose>
+                            <c:when test="${animal == null}">
+                                <option value="" selected>Selecione a Espécie*</option>
+                            </c:when>
+                        </c:choose>
+                        <option value="CACHORRO" ${animal.especie == 'CACHORRO' ? 'selected' : ''}>Cachorro</option>
+                        <option value="GATO" ${animal.especie == 'GATO' ? 'selected' : ''}>Gato</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <i class="fa fa-calendar"></i>
+                    <input type="number" class="form-control" name="idade" id="idade" placeholder="Idade*" step="1" required value="${animal.idade}">
+                </div>
+
+                <div class="form-group mb-3">
+                    <i class="fa fa-venus-mars"></i>
+                    <select class="form-select" name="sexo" id="sexo" required>
+                        <c:choose>
+                            <c:when test="${animal == null}">
+                                <option value="" selected>Selecione o Sexo*</option>
+                            </c:when>
+                        </c:choose>
+                        <option value="MACHO" ${animal.sexo == 'MACHO' ? 'selected' : ''}>Macho</option>
+                        <option value="FEMEA" ${animal.sexo == 'FEMEA' ? 'selected' : ''}>Fêmea</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <i class="fa fa-swatchbook"></i>
+                    <input type="text" class="form-control" name="pelagem" id="pelagem" placeholder="Pelagem*" minlength="3" maxlength="50" required value="${animal.pelagem}">
+                </div>
+
+                <div class="form-group mb-3">
+                    <i class="fa fa-dna"></i>
+                    <input type="text" class="form-control" name="raca" id="raca" placeholder="Raça*" minlength="3" maxlength="50" required value="${animal.raca}">
+                </div>
+
+                <div class="form-group mb-3">
+                    <i class="fa fa-notes-medical"></i>
+                    <textarea class="form-control" name="problemas_saude" id="problemas_saude" placeholder="Problemas de saúde">${animal.problemas_saude}</textarea>
+                </div>
+
+                <div class="col-12 mb-3 text-center">
+                    <button type="submit" class="btn btn-primary" name="action" value="saveAnimal">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
