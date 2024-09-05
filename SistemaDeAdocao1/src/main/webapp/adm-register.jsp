@@ -99,7 +99,7 @@
                     </div>
                     
                     <div class="col-12 mb-3 text-center">
-                        <button type="submit" class="btn btn-primary" name="action" value="addEmployee">Salvar</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="addAdm">Salvar</button>
                     </div>
                 </form>
             </div>
